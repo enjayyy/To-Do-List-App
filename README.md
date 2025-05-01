@@ -1,4 +1,4 @@
-![Screenshot (131)](https://github.com/user-attachments/assets/ce7dbfbb-e3d8-489c-bcfe-1c867bae696e)# To-Do List App
+# To-Do List App
 
 A simple and interactive To-Do List application that allows users to manage their daily tasks efficiently. This app is built using **HTML**, **CSS**, and **JavaScript**.
 
