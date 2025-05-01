@@ -11,11 +11,12 @@ function addTask(){
         listContainer.appendChild(li);
         li.addEventListener("click", function(){
             li.style.textDecoration="line-through";
-            li.classList.toggle("checked"); // remember: checked is a css class that holds the checked img icon
+            li.classList.toggle("checked"); // remember:checked is a css class that holds the checked img icon
 
         })
         let removeButton = document.createElement("button");
         removeButton.innerHTML= "\u00d7";
+        removeButton.classList.add("remove-btn"); // Add a class to the button
         li.appendChild(removeButton);
         removeButton.addEventListener("click", function(){
             listContainer.removeChild(li);
