@@ -11,7 +11,7 @@ function addTask(){
         listContainer.appendChild(li);
         li.addEventListener("click", function(){
             li.style.textDecoration="line-through";
-            li.classList.toggle("checked"); // remember:checked is a css class that holds the checked img icon
+            li.classList.toggle("checked"); // 
 
         })
         let removeButton = document.createElement("button");
