@@ -1,0 +1,78 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'poppins', sans-serif;
+    box-sizing:border-box; 
+}
+
+.container{
+    width: 100%;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #0d690a, #2c48d5);
+    padding: 10px;
+}
+.background{
+    background-image: url(images/topography.svg);   
+    width: 100%;
+    min-height: 100vh;
+    padding: 10px;
+}
+.todo-app{
+    width: 100%;
+    max-width: 740px;
+    background-image: url(images/floral\ patter.webp);    
+    margin: 100px auto 20px;
+    padding: 40px 30px 70px;
+    border-radius: 40px;
+    text-align: center;
+
+}
+
+.todo-app h2{
+    display: flex;
+    margin-left: 130px;
+    align-items: center;
+    margin-bottom: 15px;
+    font-size: 30px;
+    font-weight: 900;
+}
+.todo-app h2 img{
+    width: 30px;
+    margin-left: 20px;
+}
+
+.row{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #edeef0;
+    border-radius:  30px;
+    padding-left: 20px;
+    margin-bottom: 25px;
+
+}
+
+input{
+    flex:1;
+    border: none;
+    outline: none;
+    background: transparent;
+    padding: 15px
+}.addbtn {
+    border: none;
+    outline: none;
+    padding: 16px 50px;
+    background: linear-gradient(135deg, #69270a, #d52ca2);
+    color: #edeef0;
+    font-size: 13px;
+    font-weight: 900;
+    cursor: pointer;
+    border-radius: 40px;
+    box-shadow: 0 0 10px rgba(213, 44, 162, 0.6), 0 0 20px rgba(213, 44, 162, 0.4);
+    transition: transform 0.1s ease, box-shadow 0.2s ease;
+}
+
+.addbtn:active {
+    transform: scale(0.95);
+    box-shadow: 0 0 5px rgba(213, 44, 162, 0.9), 0 0 10px rgba(213, 44, 162, 0.7);
+}
