@@ -40,5 +40,6 @@ A simple and interactive To-Do List application that allows users to manage thei
 
 
 ## Screenshots
-![alt text](<Screenshot (132).png>)
-![alt text](<Screenshot (131).png>)
+
+![alt text](<Screenshot 2025-05-02 114659.png>)
+![alt text](<Screenshot 2025-05-02 115224.png>)
