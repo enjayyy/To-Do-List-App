@@ -1,6 +1,11 @@
 const inputBox = document.getElementById("task-input");
 const listContainer = document.getElementById("list-container");
 
+// Load tasks when page loads
+document.addEventListener('DOMContentLoaded', function() {
+    showTask();
+});
+
 function addTask() {
     if (inputBox.value === "") {
         alert("Oh? Looks like you need to add a task first!");
@@ -16,7 +21,7 @@ function addTask() {
         
         // Edit button
         let editButton = document.createElement("button");
-        editButton.innerHTML = "✎"; // Pencil icon
+        editButton.innerHTML = "✎";
         editButton.classList.add("edit-btn");
         li.appendChild(editButton);
         
@@ -28,11 +33,9 @@ function addTask() {
             input.type = "text";
             input.value = currentText;
             
-            // Replace the text with an input field
             taskText.replaceWith(input);
             input.focus();
             
-            // Handle when editing is done
             function finishEditing() {
                 if (input.value.trim() === "") {
                     alert("Task cannot be empty! Enter some text or delete the task.");
@@ -42,8 +45,8 @@ function addTask() {
                 
                 taskText.textContent = input.value;
                 input.replaceWith(taskText);
+                saveData(); // Save after editing
                 
-                // Remove event listeners
                 input.removeEventListener("blur", finishEditing);
                 input.removeEventListener("keypress", handleKeyPress);
             }
@@ -60,10 +63,10 @@ function addTask() {
         
         // Toggle completed state
         li.addEventListener("click", function(e) {
-            // Only toggle if the click wasn't on a button
             if (e.target === li || e.target === taskText) {
                 li.style.textDecoration = li.style.textDecoration === "line-through" ? "none" : "line-through";
                 li.classList.toggle("checked"); 
+                saveData(); // Save after toggling completion
             }
         });
         
@@ -76,7 +79,80 @@ function addTask() {
         removeButton.addEventListener("click", function(e) {
             e.stopPropagation();
             listContainer.removeChild(li);
+            saveData(); // Save after removal
         });
+        
+        saveData(); // Save after adding new task
     }
     inputBox.value = "";
+}
+
+function saveData() {
+    localStorage.setItem("todoData", listContainer.innerHTML);
+}
+
+function showTask() {
+    const savedData = localStorage.getItem("todoData");
+    if (savedData) {
+        listContainer.innerHTML = savedData;
+        
+        // Reattach event listeners to all existing tasks
+        document.querySelectorAll("#list-container li").forEach(li => {
+            const taskText = li.querySelector(".task-text");
+            const editButton = li.querySelector(".edit-btn");
+            const removeButton = li.querySelector(".remove-btn");
+            
+            // Reattach edit button functionality
+            editButton.addEventListener("click", function(e) {
+                e.stopPropagation();
+                const currentText = taskText.textContent;
+                const input = document.createElement("input");
+                input.type = "text";
+                input.value = currentText;
+                
+                taskText.replaceWith(input);
+                input.focus();
+                
+                function finishEditing() {
+                    if (input.value.trim() === "") {
+                        alert("Task cannot be empty! Enter some text or delete the task.");
+                        input.focus();
+                        return;
+                    }
+                    
+                    taskText.textContent = input.value;
+                    input.replaceWith(taskText);
+                    saveData();
+                    
+                    input.removeEventListener("blur", finishEditing);
+                    input.removeEventListener("keypress", handleKeyPress);
+                }
+                
+                function handleKeyPress(e) {
+                    if (e.key === "Enter") {
+                        finishEditing();
+                    }
+                }
+                
+                input.addEventListener("blur", finishEditing);
+                input.addEventListener("keypress", handleKeyPress);
+            });
+            
+            // Reattach completion toggle
+            li.addEventListener("click", function(e) {
+                if (e.target === li || e.target === taskText) {
+                    li.style.textDecoration = li.style.textDecoration === "line-through" ? "none" : "line-through";
+                    li.classList.toggle("checked"); 
+                    saveData();
+                }
+            });
+            
+            // Reattach remove button
+            removeButton.addEventListener("click", function(e) {
+                e.stopPropagation();
+                li.remove();
+                saveData();
+            });
+        });
+    }
 }
