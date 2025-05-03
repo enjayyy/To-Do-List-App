@@ -1,7 +1,6 @@
 const inputBox = document.getElementById("task-input");
 const listContainer = document.getElementById("list-container");
 
-// Load tasks when page loads
 document.addEventListener('DOMContentLoaded', function() {
     showTask();
 });
@@ -19,13 +18,11 @@ function addTask() {
         li.appendChild(taskText);
         listContainer.appendChild(li);
         
-        // Edit button
         let editButton = document.createElement("button");
         editButton.innerHTML = "✎";
         editButton.classList.add("edit-btn");
         li.appendChild(editButton);
         
-        // Edit functionality
         editButton.addEventListener("click", function(e) {
             e.stopPropagation();
             const currentText = taskText.textContent;
@@ -45,7 +42,7 @@ function addTask() {
                 
                 taskText.textContent = input.value;
                 input.replaceWith(taskText);
-                saveData(); // Save after editing
+                saveData(); 
                 
                 input.removeEventListener("blur", finishEditing);
                 input.removeEventListener("keypress", handleKeyPress);
@@ -61,16 +58,16 @@ function addTask() {
             input.addEventListener("keypress", handleKeyPress);
         });
         
-        // Toggle completed state
+  
         li.addEventListener("click", function(e) {
             if (e.target === li || e.target === taskText) {
                 li.style.textDecoration = li.style.textDecoration === "line-through" ? "none" : "line-through";
                 li.classList.toggle("checked"); 
-                saveData(); // Save after toggling completion
+                saveData(); 
             }
         });
         
-        // Remove button
+       
         let removeButton = document.createElement("button");
         removeButton.innerHTML = "\u00d7";
         removeButton.classList.add("remove-btn");
@@ -79,10 +76,10 @@ function addTask() {
         removeButton.addEventListener("click", function(e) {
             e.stopPropagation();
             listContainer.removeChild(li);
-            saveData(); // Save after removal
+            saveData(); 
         });
         
-        saveData(); // Save after adding new task
+        saveData(); 
     }
     inputBox.value = "";
 }
@@ -96,13 +93,13 @@ function showTask() {
     if (savedData) {
         listContainer.innerHTML = savedData;
         
-        // Reattach event listeners to all existing tasks
+      
         document.querySelectorAll("#list-container li").forEach(li => {
             const taskText = li.querySelector(".task-text");
             const editButton = li.querySelector(".edit-btn");
             const removeButton = li.querySelector(".remove-btn");
             
-            // Reattach edit button functionality
+            
             editButton.addEventListener("click", function(e) {
                 e.stopPropagation();
                 const currentText = taskText.textContent;
@@ -138,7 +135,7 @@ function showTask() {
                 input.addEventListener("keypress", handleKeyPress);
             });
             
-            // Reattach completion toggle
+          
             li.addEventListener("click", function(e) {
                 if (e.target === li || e.target === taskText) {
                     li.style.textDecoration = li.style.textDecoration === "line-through" ? "none" : "line-through";
@@ -147,7 +144,7 @@ function showTask() {
                 }
             });
             
-            // Reattach remove button
+            
             removeButton.addEventListener("click", function(e) {
                 e.stopPropagation();
                 li.remove();

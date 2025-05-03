@@ -32,12 +32,15 @@
 
 .todo-app h2{
     display: flex;
-    margin-left: 215px;
+    
     align-items: center;
     margin-bottom: 15px;
     font-size: 30px;
     font-weight: 900;
     color: #101317;
+    display: flex;
+    margin-left: 215px;
+   
 }
 .todo-app h2 img{
     width: 30px;
@@ -93,10 +96,30 @@ ul li{
   
 }
 
-ul li.checked::before{
-    background-image: url(images/checked.png);
+
+
+ul li::before{
+    content: '';
+    position: absolute;
+    height: 18px;
+    width: 18px;
+    border-radius:50%;
+    background-image: url(images/unchecked.png);
+    background-size:cover;
+    background-position: center;
+    top:12px;
+    left: 8px;
 }
 
+ul li.checked{
+    color:#aaa4a4;
+    text-decoration: line-through;
+    
+}
+ul li.checked::before{
+    background-image: url(images/checked.png);
+
+}
 .remove-btn {
    position: absolute;
    right: 0;
@@ -116,7 +139,7 @@ ul li.checked::before{
 
 .edit-btn {
     position: absolute;
-    right: 40px; /* Position to the left of the remove button */
+    right: 40px; 
     top: 5px;
     width: 30px;
     height: 30px;
@@ -133,4 +156,16 @@ ul li.checked::before{
 .edit-btn:hover {
     background: linear-gradient(135deg, #3a5ae8, #1e7d1a);
     box-shadow: 0 0 5px rgba(44, 72, 213, 0.5);
+}
+@media (max-width: 900px) {
+    .todo-app h2 {
+        margin-left: 90px;
+    }
+}
+
+@media (max-width: 600px) {
+    .todo-app h2 {
+        margin-left: 0;
+        justify-content: center;
+    }
 }
